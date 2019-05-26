@@ -10,7 +10,8 @@ let TravellerSchema = new Schema({
 	email:{
 		type:String, 
 		required:true,
-		match:[/^[^@\s]+@[^@\s]+\.[^@\s]+$/,'Invalid email']
+		match:[/^[^@\s]+@[^@\s]+\.[^@\s]+$/,'Invalid email'],
+		unique:true
 	},
 	dob:{
 		type:Date, 

@@ -1,6 +1,7 @@
 const Traveller = require('./../model/traveller.model');
 const handleError = function(err){
 	let error;
+
 	switch (err.name) {
     case 'ValidationError':
 	  error = {};
@@ -15,6 +16,17 @@ const handleError = function(err){
         }
       }
       break;
+    case 'MongoError':
+    error = {}
+   	if(err.message.includes('duplicate key error')){
+		error = {
+			errorMessage:'Email already added'
+		}
+	}
+	else{
+		error = 'Something went wrong';
+	}
+	break;
     default:
       error = 'Something went wrong';
   	}
